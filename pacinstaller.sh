@@ -32,7 +32,7 @@ pacman --noconfirm -S \
   maim \
   xmonad xmonad-contrib xmobar picom \
   xclip xdotool xorg-xev xorg-xfd \
-  dunst numlockx redshift unclutter \
+  dunst libnotify numlockx redshift unclutter \
   alacritty kitty \
   ttf-ubuntu-font-family \
   mpv feh cmus w3m \
