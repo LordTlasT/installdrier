@@ -27,7 +27,7 @@ pacman --noconfirm -S \
   python3 python-pip \
   wget yt-dlp \
   zip unzip \
-  git \
+  git openssh sshpass\
   pass mutt \
   maim \
   xmonad xmonad-contrib xmobar picom \
@@ -37,7 +37,7 @@ pacman --noconfirm -S \
   ttf-ubuntu-font-family \
   mpv feh cmus w3m \
   evince dolphin \
-  pulseaudio pulseaudio-alsa pulsemixer \
+  pulseaudio pulseaudio-alsa pulsemixer pamixer \
   firefox passff-host \
   inetutils pv\
   || exit 1
