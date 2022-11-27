@@ -1,0 +1,19 @@
+$HOME/.config/
+alacritty antimicrox cmus dunst dolphinrc gtk-3.0 htop kitty Kvantum mpv picom ranger redshift spotifyd starship xmobar xmonad
+
+$HOME/.local/share/multimc/
+common
+
+$HOME/
+.gtkrc-2.0 .mutt .password-store .tmux .vim .zsh
+AppImages bin Builds Documents Music Pictures School ZoneOfTesting
+
+$HOME/
+.zshrc .tmux.conf .fehbg .Xresources
+.selected_editor .vimrc
+
+/usr/share/libalpm/hooks/
+xmonad-recompile.hook
+
+/etc/
+environment hosts pacman.conf default/grub X11/xorg.conf security/faillock.conf
