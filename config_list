@@ -16,4 +16,6 @@ $HOME/
 xmonad-recompile.hook
 
 /etc/
-environment hosts pacman.conf pacman.d/hooks default/grub X11/xorg.conf security/faillock.conf
+environment hosts pacman.conf pacman.d/hooks default/grub X11/xorg.conf security/faillock.conf systemd/system/slock@.service
+
+
