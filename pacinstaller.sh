@@ -27,11 +27,11 @@ pacman --noconfirm -S \
   python3 python-pip \
   wget yt-dlp \
   zip unzip \
-  git openssh sshpass\
+  git openssh \
   pass mutt \
   maim tesseract tesseract-data-eng \
   xmonad xmonad-contrib xmobar picom \
-  xclip xdotool xorg-xev xorg-xfd \
+  xclip xdotool xorg-xev xorg-xfd xautolock x11-ssh-askpass \
   dunst libnotify numlockx redshift unclutter \
   alacritty kitty \
   ttf-ubuntu-font-family \
