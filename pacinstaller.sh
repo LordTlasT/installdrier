@@ -29,7 +29,7 @@ pacman --noconfirm -S \
   zip unzip \
   git openssh sshpass\
   pass mutt \
-  maim \
+  maim tesseract tesseract-data-eng \
   xmonad xmonad-contrib xmobar picom \
   xclip xdotool xorg-xev xorg-xfd \
   dunst libnotify numlockx redshift unclutter \
@@ -39,7 +39,7 @@ pacman --noconfirm -S \
   evince dolphin \
   pulseaudio pulseaudio-alsa pulsemixer pamixer \
   firefox passff-host \
-  inetutils pv\
+  inetutils pv \
   || exit 1
 
 # Theming
