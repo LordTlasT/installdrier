@@ -28,9 +28,10 @@ vim -c 'PlugInstall' -c 'quitall' \
 
 # GPG IMPORT BOSS KEY
 
-for dir in $(/usr/bin/ls ~/Builds)
+for dir in $(ls "$HOME/Builds")
 do
-    cd "~/Builds/${dir}" || exit 1
+    cd "$HOME/Builds/${dir}" || exit 1
+    sudo make clean install || exit 1
 done
 
 # Move Mononoki to TTF
