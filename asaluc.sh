@@ -28,11 +28,10 @@ vim -c 'PlugInstall' -c 'quitall' \
 
 # GPG IMPORT BOSS KEY
 
-# DOES NOT WORK
-# dmenu
-cd $HOME/Builds/dmenu/dmenu-*
-sudo make install || exit
-cd
+for dir in $(/usr/bin/ls ~/Builds)
+do
+    cd "~/Builds/${dir}" || exit 1
+done
 
 # Move Mononoki to TTF
 echo "Copying fonts..."
