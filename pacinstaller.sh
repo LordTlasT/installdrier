@@ -37,7 +37,7 @@ pacman --noconfirm -S \
   ttf-ubuntu-font-family \
   mpv feh cmus w3m \
   evince dolphin \
-  pulseaudio pulseaudio-alsa pulsemixer pamixer \
+  pulseaudio pulseaudio-alsa alsa-utils pulsemixer pamixer \
   firefox passff-host \
   inetutils pv \
   || exit 1
