@@ -86,9 +86,6 @@ chsh -s /bin/zsh aluc
 #     || exit 1
 
 pacman --noconfirm -S xorg-server xorg-xinit
-head -n -5 /etc/X11/xinit/xinitrc > ${home}/.xinitrc
-echo "exec xmonad" >> ${home}/.xinitrc
-chmod +x ${home}/.xinitrc
 
 git clone https://github.com/vim/vim
 cd vim
@@ -108,15 +105,6 @@ make
 make install || exit
 cd
 rm -rf vim
-
-# DOES NOT WORK!
-# in /usr/share/X11/xkb/symbols/pc :
-# line 7
-# change <CAPS> {[ Caps_lock ]};
-# to ->  <CAPS> {[ Escape ]};
-sed -i 's/\(CAPS.*\[   \)/\1Escape/g' \
-  /usr/share/X11/xkb/symbols/pc
-setxkbmap ${layout}
 
 echo "Don't forget to set a password for '${user}'"
 echo "Don't forget to edit visudo file"
