@@ -17,6 +17,7 @@ rm -rf paru
 #   aic94xx-firmware\
 #   upd72020x-fw\
 #   wd719x-firmware\
+#   xf86-video-ast\
 #   linux-firmware-qlogic\
 #   || exit
 
