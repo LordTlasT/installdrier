@@ -13,4 +13,4 @@ $HOME/
 .selected_editor .vimrc
 
 /etc/
-environment hosts pacman.conf pacman.d/hooks default/grub X11/xorg.conf security/faillock.conf systemd/system/slock@.service
+environment dhcpcd/ hosts pacman.conf pacman.d/hooks default/grub mkinitcpio.conf X11/xorg.conf security/faillock.conf systemd/system/slock@.service
