@@ -32,10 +32,3 @@ done
 echo "Copying fonts..."
 sudo cp ~/ZoneOfTesting/repo/fonts/* /usr/share/fonts/TTF/
 sudo fc-cache -v
-
-# # Adjust PATH in /etc/ly/config.ini
-# sudo systemctl enable ly.service
-# echo "Adding ${HOME}/bin to PATH"
-# sed -i \
-#   "s;# *path = \(.*\)$;path = ${HOME}/bin:\1;g" \
-#   /etc/ly/config.ini
