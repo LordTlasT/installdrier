@@ -6,13 +6,6 @@
 # pip install virtualenv
 # pip install mnamer
 
-cd
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si --noconfirm || exit
-cd
-rm -rf paru
-
 # paru --noconfirm -S \
 #   aic94xx-firmware\
 #   upd72020x-fw\
