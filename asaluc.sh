@@ -16,9 +16,6 @@
 
 systemctl --user enable pulseaudio.service
 systemctl --user enable redshift
-# vim
-vim -c 'PlugInstall' -c 'quitall' \
-    && ~/.vim/plugged/YouCompleteMe/install.py
 
 # GPG IMPORT BOSS KEY
 

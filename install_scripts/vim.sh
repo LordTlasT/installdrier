@@ -16,3 +16,4 @@ make
 make install || exit
 cd
 rm -rf vim
+vim -c 'PlugInstall' -c 'quitall'
