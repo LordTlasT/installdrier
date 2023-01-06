@@ -5,12 +5,6 @@ home=/home/${user}
 
 useradd -m -G wheel ${user}
 
-# pacinstaller outside
-# tar -xf configger.tar
-# rm configger.tar
-# mv configger/* configger/.* .
-# rmdir configger
-
 ping -c4 archlinux.org \
   || exit 1
 pacman --noconfirm -Syu \
