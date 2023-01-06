@@ -14,3 +14,4 @@ pacman --noconfirm -S \
 	mpv feh cmus \
 	inetutils \
 	pass mutt \
+	pv
