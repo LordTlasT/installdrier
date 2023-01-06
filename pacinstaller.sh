@@ -19,7 +19,7 @@ pacman --noconfirm -Syu \
   # npm \
   # jre \
 pacman --noconfirm -S \
-  lynx ranger python-pygments tmux \
+  lynx nnn python-pygments tmux \
   man-db man-pages bash-completion exa \
   htop \
   fzf \
@@ -29,21 +29,23 @@ pacman --noconfirm -S \
   zip unzip \
   git openssh \
   pass mutt \
-  maim tesseract tesseract-data-eng \
   xmonad xmonad-contrib xmobar picom \
   xclip xdotool xorg-xev xorg-xfd xautolock x11-ssh-askpass \
   dunst libnotify numlockx redshift unclutter \
   alacritty kitty \
   ttf-ubuntu-font-family \
   mpv feh cmus w3m \
-  evince dolphin \
   pulseaudio pulseaudio-alsa pulsemixer pamixer \
-  firefox passff-host \
-  inetutils pv \
+  inetutils \
   || exit 1
 
+# pacman --noconfirm -S \
+#   maim tesseract tesseract-data-eng \
+#   evince dolphin \
+#   firefox passff-host \
+
 # Theming
-pacman --noconfirm - S \
+pacman --noconfirm -S \
     kvantum lxappearance arc-gtk-theme
 
 pacman --noconfirm -S \
