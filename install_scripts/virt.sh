@@ -3,6 +3,7 @@
 pacman --noconfirm -S \
     virtualbox virtualbox-guest-iso
 usermod -aG vboxusers "${user}"
+modprobe vboxdrv vboxnetadp vboxnetflt
 
 pacman --noconfirm -S \
 virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq iptables-nft
