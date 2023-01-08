@@ -2,7 +2,7 @@
 
 pacman --noconfirm -S \
 	neovim \
-	lynx nnn tmux \
+	nnn \
 	tesseract tesseract-data-eng \
 	htop \
 	fzf \
