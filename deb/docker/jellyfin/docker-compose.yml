@@ -12,7 +12,7 @@ services:
       - /srv/jellyfin/data/tvshows:/data/tvshows
       - /srv/jellyfin/data/movies:/data/movies
       - /srv/jellyfin/data/anime:/data/anime
-      - /srv/jellyfin/data/data:/data/media
+      - /srv/jellyfin/data/media:/data/media
     ports:
       - 8096:8096
       - 8920:8920 #https
