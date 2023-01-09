@@ -8,7 +8,7 @@ pacman -Syu || exit 1
 
 trap "Bye." EXIT
 
-for script in install_scripts/*.sh
+for script in arch/*.sh
 do
 	./$script
 done
