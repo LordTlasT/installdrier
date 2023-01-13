@@ -13,4 +13,4 @@ $HOME/
 .selected_editor .vimrc
 
 /etc/
-environment dhcpcd/ hosts pacman.conf pacman.d/hooks default/grub mkinitcpio.conf X11/xorg.conf security/faillock.conf systemd/system/slock@.service pers.map.gz
+environment dhcpcd/ doas.conf hosts pacman.conf pacman.d/hooks default/grub mkinitcpio.conf X11/xorg.conf security/faillock.conf systemd/system/slock@.service pers.map.gz
