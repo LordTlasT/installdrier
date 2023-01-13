@@ -15,3 +15,4 @@ pacman --noconfirm -S \
 	inetutils \
 	pass mutt \
 	pv
+ln -sf /usr/bin/nvim /usr/bin/vim
