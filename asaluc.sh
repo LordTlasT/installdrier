@@ -7,6 +7,8 @@
 # pip install mnamer
 
 # paru --noconfirm -S \
+# 	jellyfin-media-player
+# paru --noconfirm -S \
 #   aic94xx-firmware\
 #   upd72020x-fw\
 #   wd719x-firmware\
