@@ -6,4 +6,5 @@ pacman --noconfirm -S \
 	evince \
 	gimp obs-studio kdenlive \
 	discord \
-	signal-desktop discord 
+	signal-desktop discord  \
+	libreoffice-still
