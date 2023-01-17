@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 pacman --noconfirm -S \
-	neovim \
 	nnn \
 	tesseract tesseract-data-eng \
 	htop \
