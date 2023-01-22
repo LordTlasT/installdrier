@@ -3,7 +3,10 @@ pacman --noconfirm  zsh
 
 # Dependencies
 pacman --noconfirm -S \
-  man-db man-pages bash-completion exa
+  man-db man-pages \
+  bash-completion \
+  exa \
+  keychain
 # zsh
 pacman --noconfirm -S \
  zsh-syntax-highlighting zsh-autosuggestions starship
