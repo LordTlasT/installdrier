@@ -13,6 +13,11 @@ function cpfiles {
 	done
 }
 
+for directory in "." "installdrier" ".config" ".password-store"
+do
+	git clone --bare ~/"${directory}"/.git "${bkpd}/repos/${directory}.git"
+done
+
 cpfiles /etc "environment doas.conf hosts pacman.conf default/grub mkinitcpio.conf X11/xorg.conf security/faillock.conf pers.map.gz"
 cpfiles ~ "docs music pictures movies zot"
 cpfiles ~/.local/share/multimc "common"
