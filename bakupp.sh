@@ -15,7 +15,7 @@ function cpfiles {
 
 cpfiles /etc "environment doas.conf hosts pacman.conf default/grub mkinitcpio.conf X11/xorg.conf security/faillock.conf pers.map.gz"
 cpfiles ~ "docs music pictures movies zot"
-cpfiles ~/.local/share/multimc/ "common"
+cpfiles ~/.local/share/multimc "common"
 
 tar czf "${bkpd}.tar.gz" "${bkpd}"
 rm -rf "${bkpd}"
