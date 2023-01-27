@@ -9,7 +9,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 pacman --noconfirm -S lua-language-server \
 	npm \
 	ripgrep
-npm -g live-server
+npm i -g live-server
+#lsps
+npm i -g unocss-language-server 
+npm i -g typescript typescript-language-server
+npm i -g emmet-ls
 
 #install plugins
 nvim -c 'PackerSync'
