@@ -17,3 +17,4 @@ npm i -g emmet-ls
 
 #install plugins
 nvim -c 'PackerSync'
+dopac -S jedi-language-server
