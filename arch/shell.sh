@@ -9,8 +9,8 @@ pacman --noconfirm -S \
   keychain
 # zsh
 pacman --noconfirm -S \
- zsh-syntax-highlighting zsh-autosuggestions starship
-curl -L git.io/antigen > ~/.zsh/antigen.zsh
+	zsh-syntax-highlighting \
+	zsh-autosuggestions
 
   || exit 1
 chsh -s /bin/zsh ${user}
