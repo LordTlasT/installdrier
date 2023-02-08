@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-apt install -y \
-	neovim
+apt-get install -y \
+	neovim \
+	lvm2
