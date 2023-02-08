@@ -1,5 +1,6 @@
 pacman --noconfirm -S \
 	neovim \ 
+ln -sf /usr/bin/nvim /usr/bin/vim
 
 # Dependencies
 #packer

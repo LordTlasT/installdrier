@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-pacman --noconfirm -S \
-	dolphin \
-	firefox passff-host firefox-tridactyl \
-	evince \
-	gimp obs-studio kdenlive \
-	discord \
-	signal-desktop discord  \
-	libreoffice-still
+case ${BLOAT:-0} in
+	0)
+		pacman --noconfirm -S \
+			dolphin \
+			firefox passff-host \
+			gimp \
+			discord \
+			signal-desktop
+		;;
+	1)
+		pacman --noconfirm -S \
+			evince \
+			obs-studio kdenlive 
+		;;
+esac

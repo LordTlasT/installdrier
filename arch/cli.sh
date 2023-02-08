@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
-
-pacman --noconfirm -S \
-	nnn \
-	tesseract tesseract-data-eng \
-	htop \
-	fzf \
-	python3 python-pip python-pygments \
-	pacman-contrib pkgfile \
-	zip unzip \
-	wget yt-dlp
-	git openssh \
-	mpv feh cmus \
-	inetutils \
-	pass mutt \
-	pv
-ln -sf /usr/bin/nvim /usr/bin/vim
+case ${BLOAT:-0} in
+	0)
+	pacman --noconfirm -S \
+		nnn \
+		htop \
+		fzf \
+		python3 python-pip \
+		pacman-contrib pkgfile \
+		zip unzip \
+		wget yt-dlp \
+		git openssh \
+		mpv feh cmus \
+		pass mutt \
+		;;
+	1)
+	pacman --noconfirm -S \
+		inetutils \
+			pv
+		;;
+esac
