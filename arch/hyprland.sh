@@ -1,3 +1,3 @@
 #!/bin/sh
 pacman -S --noconfirm \
-	wofi gammastep wl-clipboard swaybg foot
+	wofi gammastep wl-clipboard swaybg foot waybar
