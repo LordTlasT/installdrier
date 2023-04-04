@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 case "${IND_SERVER:-pulse}" in
 	"pulse")
 		pacman --noconfirm -S \

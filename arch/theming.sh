@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 pacman --noconfirm -S \
 	kvantum lxappearance arc-gtk-theme \
