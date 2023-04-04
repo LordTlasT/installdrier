@@ -14,3 +14,7 @@ pacman --noconfirm -S \
 
   || exit 1
 chsh -s /bin/zsh ${u:-aluc}
+
+pacman --noconfirm -S \
+	dash
+ln -sf /usr/bin/dash /bin/sh
