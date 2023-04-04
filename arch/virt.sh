@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 pacman --noconfirm -S \
     virtualbox virtualbox-guest-iso

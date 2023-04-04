@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Dependencies
 pacman --noconfirm -S \
@@ -6,13 +6,12 @@ pacman --noconfirm -S \
   bash-completion \
   exa \
   keychain
+
 # zsh
 pacman --noconfirm -S \
 	zsh \
 	zsh-syntax-highlighting \
 	zsh-autosuggestions
-
-  || exit 1
 chsh -s /bin/zsh ${u:-aluc}
 
 pacman --noconfirm -S \

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 pacman --noconfirm -S \
 	vagrant libvirt
 vagrant plugin install vagrant-libvirt
