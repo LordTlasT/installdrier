@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Python packages
 # pip install opencv-python

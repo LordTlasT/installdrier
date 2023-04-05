@@ -1,9 +1,8 @@
-apt install -y \
-    syncthing \
-    syncthing-relaysrv
+apt install -y syncthing
 
-useradd syncthing -m --home /srv/syncthing --shell /bin/nologin syncthing
-# useradd syncthing -m --home /etc/strelaysrv --shell /bin/nologin strelaysrv
+useradd -d /srv/syncthing -s /usr/sbin/nologin -r syncthing
+mkdir /srv/syncthing
+chown syncthing:syncthing /srv/syncthing
+chmod 700 /srv/syncthing
 
 systemctl enable --now syncthing@syncthing.service
-

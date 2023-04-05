@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 pacman --noconfirm -S \
 	xorg-server xorg-xinit \
