@@ -4,7 +4,8 @@
 # -- aluc passwd
 # -- aluc visudo
 # 3. asaluc
-dev="sda"
+dev="/dev/sda"
+EFI=0
 layout="us"
 lang="en_US.UTF-8"
 region="Europe/Brussels"
@@ -25,17 +26,21 @@ echo "LANG=${lang}" > /etc/locale.conf
 #hostname
 echo "${hostname}" > /etc/hostname
 #Pacman conf
-# sed -i 's;#\(ParallelDownloads\).*;\1 = 2;g' /etc/pacman.conf
-echo "127.0.0.1           localost" \
-  >> /etc/hosts
-echo "::1                 localost" \
-  >> /etc/hosts
-echo "127.0.0.1           ${hostname}.localdomain ${hostname}" \
-  >> /etc/hosts
+cat > /etc/hosts <<EOF
+127.0.0.1           localost
+::1                 localost
+127.0.0.1           $hostname.localdomain $hostname
+EOF
 
 pacman --noconfirm -S grub
-grub-install --target=i386-pc /dev/${dev}
-grub-mkconfig -o /boot/grub/grub.cfg
+if [[ "$EFI" -eq 0 ]]
+then
+	grub-install --target=i386-pc $dev
+else
+	pacman --noconfirm -S efibootmgr
+	grub-install --target=x86_64-efi --efi-directory=$dev --bootloader-id=GRUB
+fi
+	grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman --noconfirm -S dhcpcd
 systemctl enable dhcpcd
