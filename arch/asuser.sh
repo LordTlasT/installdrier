@@ -1,33 +1,15 @@
 #!/bin/sh
 
-# Python packages
-# pip install opencv-python
-# pip install Pillow
-# pip install virtualenv
-# pip install mnamer
+# installing aur packages
+env aur=pikaur ./scripts/aur.sh
+cat pkglists/aur | 
+	pikaur -S --noconfirm -
 
-# paru --noconfirm -S \
-# 	jellyfin-media-player
-# paru --noconfirm -S \
-#   aic94xx-firmware\
-#   upd72020x-fw\
-#   wd719x-firmware\
-#   xf86-video-ast\
-#   linux-firmware-qlogic\
-#   || exit
+./scripts/createhome.sh
 
-systemctl --user enable pulseaudio.service
-systemctl --user enable redshift
-
-# GPG IMPORT BOSS KEY
-
-for dir in $(ls "$HOME/Builds")
-do
-    cd "$HOME/Builds/${dir}" || exit 1
-    sudo make clean install || exit 1
-done
-
-# Move Mononoki to TTF
-echo "Copying fonts..."
-sudo cp ~/ZoneOfTesting/repo/fonts/* /usr/share/fonts/TTF/
-sudo fc-cache -v
+if ! doas -C /etc/doas.conf
+then
+	echo "Please install opendoas first."
+	exit 1
+fi
+doas ./scripts/nvim.sh
