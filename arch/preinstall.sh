@@ -27,7 +27,7 @@ swapoff "${dev}1" 2> /dev/null
 die "wiping drive"
 wipefs -a "$dev" > /dev/null
 
-die "Creating swap partition"
+die "creating swap partition"
 fdisker "g n   +1G t  19 w"
 mkswap "${dev}1" > /dev/null 2>&1
 swapon "${dev}1"
@@ -36,17 +36,17 @@ if [ "$efi" -eq 0 ]
 then
 	root=2
 else
-	die "Creating efi partition"
+	die "creating efi partition"
 	fdisker "n   +1G t  1 w"
 	root=3
 fi
 
-die "Creating root partition"
+die "creating root partition"
 fdisker "n    t  20 w"
-
 mkfs.ext4 "${dev}$root" > /dev/null 2>&1
 mount "${dev}$root" /mnt
 
+# add efi
 if [ "$efi" -eq 1 ]
 then
 	mkfs.fat -F 32 "${dev}2" > /dev/null 2>&1
@@ -62,6 +62,6 @@ die ""
 fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 
+die "installing the system"
 pacstrap -K /mnt base linux linux-firmware > /dev/null 2>&1
-
 genfstab -U /mnt >> /mnt/etc/fstab
