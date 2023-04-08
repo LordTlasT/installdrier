@@ -6,11 +6,14 @@ die ()
 }
 
 die "testing internet connection"
-if ! ping craftmenners.men -W 3 -c 4 > /dev/null 2>&1
+if ! ping archlinux.org -W 4 -c 4 > /dev/null 2>&1
 then
 	die "E: connection was not succesful!"
 	exit 1
 fi
+
+die "refreshing packages"
+pacman -Sy --noconfirm >/dev/null 2>&1
 
 # use lowercase to not interfere with env vars
 export dev="/dev/sda"

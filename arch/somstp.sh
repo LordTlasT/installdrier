@@ -21,10 +21,11 @@ if [[ "$efi" -eq 0 ]]
 then
 	grub-install --target=i386-pc $dev
 else
-	pacman --noconfirm -S efibootmgr
+	pacman -S --noconfirm efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=$dev --bootloader-id=GRUB
 fi
-	grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman --noconfirm -S dhcpcd
+pacman -S --noconfirm dhcpcd iwd
 systemctl enable dhcpcd
+systemctl enable iwd
