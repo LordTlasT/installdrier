@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo $$ > preinstall.pid
 dev=/dev/sda
 efi=1
 
@@ -67,3 +68,6 @@ pacman -Sy archlinux-keyring > /dev/null 2>&1 ||
 	exit 1
 pacstrap -K /mnt base linux linux-firmware > /dev/null 2>&1
 genfstab -U /mnt >> /mnt/etc/fstab
+die "done. :)"
+
+rm preinstall.pid
