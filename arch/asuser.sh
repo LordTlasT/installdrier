@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # installing aur packages
-env aur=pikaur ./scripts/aur.sh
-cat pkglists/aur | 
-	pikaur -S --noconfirm -
+export aurh=pikaur
+./scripts/aur.sh
+cat pkglists/aur1 | ${aurh} -S --noconfirm -
 
 ./scripts/createhome.sh
 
