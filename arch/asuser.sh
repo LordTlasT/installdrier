@@ -7,7 +7,7 @@ cat pkglists/aur |
 
 ./scripts/createhome.sh
 
-if ! doas -C /etc/doas.conf
+if ! doas doas -C /etc/doas.conf
 then
 	echo "Please install opendoas first."
 	exit 1
