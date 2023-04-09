@@ -8,3 +8,4 @@ permit nopass :wheel cmd reboot
 permit nopass :wheel cmd poweroff
 EOF
 chmod 0400 /etc/doas.conf
+ln -sf /usr/local/bin/sudo /usr/bin/doas
