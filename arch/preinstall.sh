@@ -68,7 +68,7 @@ pacman -Sy --noconfirm archlinux-keyring > /dev/null 2>&1 ||
 	exit 1
 echo "install system?"
 read
-pacstrap -K /mnt base linux linux-firmware
+pacstrap -K /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 die "copying installdrier over."
 cd ..
