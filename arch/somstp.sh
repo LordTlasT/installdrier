@@ -1,5 +1,9 @@
 #!/bin/sh
 
+die () {
+	echo "$1" >&2
+}
+
 ln -sf /usr/share/zoneinfo/${region} /etc/localtime
 hwclock --systohc
 
@@ -16,7 +20,8 @@ cat > /etc/hosts <<EOF
 127.0.0.1           $hostname.localdomain $hostname
 EOF
 
-pacman --noconfirm -S grub
+die "installing grub"
+pacman --noconfirm -S grub > /dev/null 2>&1
 if [[ "$efi" -eq 0 ]]
 then
 	grub-install --target=i386-pc $dev

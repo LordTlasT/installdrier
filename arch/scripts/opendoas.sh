@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usermod -aG wheel $user
-pacman -S --noconfirm opendoas
+pacman -S --noconfirm opendoas > /dev/null 2>&1
 cat > /etc/doas.conf <<EOF
 permit persist :wheel
 permit nopass :wheel cmd reboot 

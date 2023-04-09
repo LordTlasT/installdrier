@@ -8,7 +8,7 @@ swap_size="+16G"
 
 die ()
 {
-	echo "$@" 2>&1
+	echo "$@" >&2
 }
 #Executes fdisk commands from string
 fdisker () {
