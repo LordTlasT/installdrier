@@ -63,5 +63,7 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 
 die "installing the system"
+pacman -Sy archlinux-keyring > /dev/null 2>&1 || 
+	exit 1
 pacstrap -K /mnt base linux linux-firmware > /dev/null 2>&1
 genfstab -U /mnt >> /mnt/etc/fstab
