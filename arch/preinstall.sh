@@ -43,11 +43,13 @@ fi
 
 die "creating swap partition"
 fdisker "n   $swap_size t  19 w"
-mkswap "${dev}2" > /dev/null 2>&1
-swapon "${dev}2"
 
 die "creating root partition"
 fdisker "n    t  20 w"
+
+mkswap "${dev}2" > /dev/null 2>&1
+swapon "${dev}2"
+
 mkfs.ext4 "${dev}3" > /dev/null 2>&1
 mount "${dev}3" /mnt
 
