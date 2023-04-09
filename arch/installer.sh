@@ -13,7 +13,7 @@ then
 fi
 
 die "refreshing packages"
-pacman -Sy --noconfirm >/dev/null 2>&1
+pacman -Sy --noconfirm archlinux-keyring >/dev/null 2>&1
 
 # use lowercase to not interfere with env vars
 export dev="/dev/sda"
