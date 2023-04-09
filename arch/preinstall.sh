@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo $$ > preinstall.pid
+echo $$ > .preinstall.pid
 dev=/dev/sda
 efi=1
 efi_size="+1G"
@@ -74,7 +74,7 @@ echo "install system?\n>"
 read
 pacstrap -K /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
-rm preinstall.pid
+rm .preinstall.pid
 
 die ""
 die "copying installdrier over."
