@@ -25,7 +25,10 @@ export hostname="archidesktop"
 export user="aluc"
 ./somstp.sh
 
-for list in 'cli
+useradd -m -d /home/${user} ${user}
+
+lists='
+cli
 audio
 cli
 DE
@@ -34,6 +37,7 @@ hyprland
 misc
 shell
 theming'
+for list in $lists
 do
 	die "installing $list"
 	if pacman -S --noconfirm - 2> "/tmp/id-$list.txt" >/dev/null < pkglists/$list
