@@ -64,8 +64,7 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 die ""
 
-die "installing the system"
-pacman -Sy archlinux-keyring > /dev/null 2>&1 || 
+pacman -Sy --noconfirm archlinux-keyring > /dev/null 2>&1 || 
 	exit 1
 echo "install system?"
 read
