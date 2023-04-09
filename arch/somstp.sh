@@ -26,6 +26,7 @@ else
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm dhcpcd iwd
+die "install networking packages"
+pacman -S --noconfirm dhcpcd iwd > /dev/null 2>&1
 systemctl enable dhcpcd
 systemctl enable iwd
