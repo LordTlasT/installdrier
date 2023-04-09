@@ -22,7 +22,7 @@ then
 	grub-install --target=i386-pc $dev
 else
 	pacman -S --noconfirm efibootmgr
-	grub-install --target=x86_64-efi --efi-directory=$dev --bootloader-id=GRUB
+	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
