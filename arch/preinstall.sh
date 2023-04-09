@@ -14,7 +14,7 @@ die ()
 fdisker () {
 	echo "$1" |
 		tr ' ' '\n' |
-		fdisk "$dev" > /dev/null 2>&1 ||
+		fdisk -w always -W always "$dev" > /dev/null 2>&1 ||
 		die "failed."
 }
 
@@ -28,7 +28,7 @@ mount |
 	xargs umount 2>/dev/null
 swapoff "${dev}2" 2> /dev/null
 die "wiping drive"
-wipefs -a "$dev" > /dev/null
+wipefs -af "$dev" > /dev/null
 
 die "creating partition table"
 fdisker "g w"
