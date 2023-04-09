@@ -2,7 +2,7 @@
 
 echo $$ > .preinstall.pid
 dev=/dev/sda
-efi=1
+efi=${1:-0}
 efi_size="+1G"
 swap_size="+16G"
 
