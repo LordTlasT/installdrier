@@ -62,12 +62,18 @@ lsblk -o name,type,fsused,size,fstype,mountpoint
 die ""
 fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
+die ""
 
 die "installing the system"
 pacman -Sy archlinux-keyring > /dev/null 2>&1 || 
 	exit 1
-pacstrap -K /mnt base linux linux-firmware > /dev/null 2>&1
+echo "install system?"
+read
+pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
+die "copying installdrier over."
+cd ..
+mv arch /mnt/root/
 die "done. :)"
 
 rm preinstall.pid
