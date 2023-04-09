@@ -3,6 +3,8 @@
 echo $$ > preinstall.pid
 dev=/dev/sda
 efi=1
+efi_size="+1G"
+swap_size="+16G"
 
 die ()
 {
@@ -29,7 +31,7 @@ die "wiping drive"
 wipefs -a "$dev" > /dev/null
 
 die "creating swap partition"
-fdisker "g n   +1G t  19 w"
+fdisker "g n   $swap_size t  19 w"
 mkswap "${dev}1" > /dev/null 2>&1
 swapon "${dev}1"
 
@@ -38,7 +40,7 @@ then
 	root=2
 else
 	die "creating efi partition"
-	fdisker "n   +1G t  1 w"
+	fdisker "n   $efi_size t  1 w"
 	root=3
 fi
 
