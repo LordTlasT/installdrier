@@ -26,15 +26,12 @@ mount |
 	grep "$dev" |
 	tac |
 	xargs umount 2>/dev/null
-swapoff "${dev}1" 2> /dev/null
+swapoff "${dev}2" 2> /dev/null
 die "wiping drive"
 wipefs -a "$dev" > /dev/null
 
-die "creating swap partition"
-fdisker "g n   $swap_size t  19 w"
-mkswap "${dev}1" > /dev/null 2>&1
-swapon "${dev}1"
-
+die "creating partition table"
+fdisker "g w"
 if [ "$efi" -eq 0 ]
 then
 	die "creating bios boot partition"
@@ -43,6 +40,11 @@ else
 	die "creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
+
+die "creating swap partition"
+fdisker "n   $swap_size t  19 w"
+mkswap "${dev}2" > /dev/null 2>&1
+swapon "${dev}2"
 
 die "creating root partition"
 fdisker "n    t  20 w"
