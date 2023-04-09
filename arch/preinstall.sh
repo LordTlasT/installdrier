@@ -77,5 +77,5 @@ rm preinstall.pid
 die ""
 die "copying installdrier over."
 cd ..
-mv arch /mnt/root/
+cp -r arch /mnt/root/
 die "done. :)"
