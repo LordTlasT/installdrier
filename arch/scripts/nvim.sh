@@ -21,6 +21,7 @@ die "installing dependencies with pacman"
 doas pacman --noconfirm -S \
 	lua-language-server \
 	jedi-language-server \
+	bash-language-server \
 	npm \
 	go \
 	ripgrep 2>&1 > /dev/null
