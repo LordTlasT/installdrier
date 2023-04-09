@@ -32,6 +32,7 @@ wipefs -a "$dev" > /dev/null
 
 die "creating partition table"
 fdisker "g w"
+
 if [ "$efi" -eq 0 ]
 then
 	die "creating bios boot partition"
@@ -40,10 +41,8 @@ else
 	die "creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
-
 die "creating swap partition"
 fdisker "n   $swap_size t  19 w"
-
 die "creating root partition"
 fdisker "n    t  20 w"
 
@@ -56,8 +55,8 @@ mount "${dev}3" /mnt
 # add efi
 if [ "$efi" -eq 1 ]
 then
-	mkfs.fat -F 32 "${dev}2" > /dev/null 2>&1
-	mount --mkdir "${dev}2" /mnt/boot
+	mkfs.fat -F 32 "${dev}1" > /dev/null 2>&1
+	mount --mkdir "${dev}1" /mnt/boot
 fi
 
 die "done. :)"
