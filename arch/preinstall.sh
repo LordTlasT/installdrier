@@ -37,17 +37,17 @@ swapon "${dev}1"
 
 if [ "$efi" -eq 0 ]
 then
-	root=2
+	die "creating bios boot partition"
+	fdisker "n   +1M t  4 w"
 else
 	die "creating efi partition"
 	fdisker "n   $efi_size t  1 w"
-	root=3
 fi
 
 die "creating root partition"
 fdisker "n    t  20 w"
-mkfs.ext4 "${dev}$root" > /dev/null 2>&1
-mount "${dev}$root" /mnt
+mkfs.ext4 "${dev}3" > /dev/null 2>&1
+mount "${dev}3" /mnt
 
 # add efi
 if [ "$efi" -eq 1 ]
