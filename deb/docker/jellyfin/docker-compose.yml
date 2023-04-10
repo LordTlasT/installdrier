@@ -13,3 +13,8 @@ services:
     ports:
       - 8096:8096
     restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: scoobydoo

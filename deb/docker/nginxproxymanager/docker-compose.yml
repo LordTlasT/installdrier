@@ -10,3 +10,8 @@ services:
     volumes:
       - /srv/ngpm/data:/data
       - /srv/ngpm/letsencrypt:/etc/letsencrypt
+
+networks:
+  default:
+    external: true
+    name: scoobydoo
