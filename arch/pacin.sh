@@ -15,12 +15,10 @@ then
 	die "file not found."
 	exit 1
 fi
-log="/tmp/id-$1"
-rm -f "$log"
-if pacman -S --noconfirm - 2> "$log-error" > "$log-success" < pkglists/$1
+
+if pacman -S --noconfirm - 2>&1 < pkglists/$1 | grep "installing"
 then
 	die "succesful."
 else
 	die "failed."
 fi
-die "log at $log"

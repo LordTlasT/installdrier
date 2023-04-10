@@ -1,6 +1,6 @@
 #!/bin/sh
 pacman -S --noconfirm \
 	zsh zsh-syntax-highlighting zsh-autosuggestions \
-	>/dev/null 2>/dev/null
+	2>&1 | grep "installing"
 chsh -s /bin/zsh $user 
 chsh -s /bin/zsh

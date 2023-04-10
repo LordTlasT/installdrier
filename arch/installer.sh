@@ -39,13 +39,7 @@ shell
 theming'
 for list in $lists
 do
-	die "installing $list"
-	if pacman -S --noconfirm - 2> "/tmp/id-$list.txt" >/dev/null < pkglists/$list
-	then
-		die "succesful."
-	else
-		die "failed to install, log at /tmp/id-$list.txt"
-	fi
+	./pacin.sh $list
 done
 
 die "installing zsh"

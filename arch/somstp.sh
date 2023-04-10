@@ -1,7 +1,12 @@
 #!/bin/sh
 
-die () {
+die ()
+{
 	echo "$1" >&2
+}
+pacs ()
+{
+	pacman -S --noconfirm $1 2>&1 | grep "installing"
 }
 
 ln -sf /usr/share/zoneinfo/${region} /etc/localtime
@@ -26,12 +31,12 @@ if [[ "$efi" -eq 0 ]]
 then
 	grub-install --target=i386-pc $dev
 else
-	pacman -S --noconfirm efibootmgr
+	pacs efibootmgr
 	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 die "install networking packages"
-pacman -S --noconfirm dhcpcd iwd > /dev/null 2>&1
+pacs "dhcpcd iwd" 
 systemctl enable dhcpcd
 systemctl enable iwd

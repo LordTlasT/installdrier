@@ -24,7 +24,7 @@ doas pacman --noconfirm -S \
 	bash-language-server \
 	npm \
 	go \
-	ripgrep 2>&1 > /dev/null
+	ripgrep 2>&1 | grep "installing"
 
 die "installing live server"
 npm i -g live-server > /dev/null 2>&1

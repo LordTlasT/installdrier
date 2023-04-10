@@ -69,11 +69,16 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 die ""
 
-pacman -Sy --noconfirm archlinux-keyring > /dev/null 2>&1 || 
+if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep installing
+then
+	die "could not install keyring."
 	exit 1
+else
+	die "installed keyring."
+fi
 echo "install system?\n>"
 read
-pacstrap -K /mnt base base-devel linux linux-firmware
+pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | grep "installing"
 genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 
