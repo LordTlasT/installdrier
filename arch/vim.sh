@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-git clone https://github.com/vim/vim
+git clone --depth 1 https://github.com/vim/vim
 cd vim
 pacman --noconfirm -S cmake
 # Bug fix for YouCompleteMe plugin
