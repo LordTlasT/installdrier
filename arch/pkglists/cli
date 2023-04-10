@@ -11,6 +11,7 @@ unzip
 wget
 yt-dlp
 git
+jq
 openssh
 mpv
 feh
