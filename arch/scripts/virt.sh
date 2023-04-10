@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
+pacs ()
+{
+	pacman -S --noconfirm $1 2>&1 | grep "installing\|Total"
+}
 
 case ${1:-virtualbox} in
 	"virtualbox")
-		pacman --noconfirm -S \
-			virtualbox virtualbox-guest-iso \
-			2>&1 | grep "installing\|Total"
+		pacs "virtualbox virtualbox-guest-iso"
 		usermod -aG vboxusers "${user:=aluc}"
 		modprobe vboxdrv vboxnetadp vboxnetflt
 		;;
 	"virtmanager")
-		pacman --noconfirm -S \
-			virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq iptables-nft \
-			2>&1 | grep "installing|Total"
+		pacs "virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq iptables-nft"
 		sudo usermod -aG libvirt "${user:=aluc}"
 		echo "unix_sock_rw_perms = '0770'" | sudo tee -a /etc/libvirt/libvirtd.conf
 		echo "unix_sock_group = 'libvirt'" | sudo tee -a /etc/libvirt/libvirtd.conf
