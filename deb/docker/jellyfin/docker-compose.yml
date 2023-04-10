@@ -9,11 +9,12 @@ services:
       - TZ=Europe/Brussels
     volumes:
       - /srv/jellyfin/config:/config
-      - /srv/jellyfin/data/tvshows:/data/tvshows
-      - /srv/jellyfin/data/movies:/data/movies
-      - /srv/jellyfin/data/anime:/data/anime
-      - /srv/jellyfin/data/media:/data/media
+      - /srv/jellyfin/data/:/data/
     ports:
       - 8096:8096
-      - 8920:8920 #https
     restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: scoobydoo

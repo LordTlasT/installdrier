@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '40080:80'
+      - '40081:81'
+      - '40443:443'
+    volumes:
+      - /srv/ngpm/data:/data
+      - /srv/ngpm/letsencrypt:/etc/letsencrypt
+
+networks:
+  default:
+    external: true
+    name: scoobydoo
