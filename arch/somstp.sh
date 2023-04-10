@@ -6,7 +6,7 @@ die ()
 }
 pacs ()
 {
-	pacman -S --noconfirm $1 2>&1 | grep "installing"
+	pacman -S --noconfirm $1 2>&1 | grep "installing|Total"
 }
 
 ln -sf /usr/share/zoneinfo/${region} /etc/localtime

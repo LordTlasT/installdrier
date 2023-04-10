@@ -16,7 +16,7 @@ then
 	exit 1
 fi
 
-if pacman -S --noconfirm - 2>&1 < pkglists/$1 | grep "installing"
+if pacman -S --noconfirm - 2>&1 < pkglists/$1 | grep "installing|Total"
 then
 	die "succesful."
 else
