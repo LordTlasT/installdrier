@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  app:
+  nginxproxymanager:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
@@ -14,4 +14,4 @@ services:
 networks:
   default:
     external: true
-    name: scoobydoo
+    name: docker-nw1
