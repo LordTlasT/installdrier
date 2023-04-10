@@ -12,5 +12,4 @@ services:
       - /srv/jellyfin/data/:/data/
     ports:
       - 8096:8096
-      - 8920:8920 #https
     restart: unless-stopped
