@@ -2,7 +2,7 @@
 
 die ()
 {
-	echo "$@" 2>&1
+	echo "$@" >&2
 }
 
 die "testing internet connection"
@@ -17,7 +17,7 @@ pacman -Sy --noconfirm archlinux-keyring >/dev/null 2>&1
 
 # use lowercase to not interfere with env vars
 export dev="/dev/sda"
-export efi=0
+export efi=1
 export layout="us"
 export lang="en_US.UTF-8"
 export region="Europe/Brussels"

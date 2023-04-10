@@ -2,17 +2,17 @@
 
 case "${aurh:-pikaur}" in
 	"pikaur")
-		git clone https://aur.archlinux.org/pikaur.git
+		git clone --depth 1 https://aur.archlinux.org/pikaur.git
 		cd pikaur
-		makepkg -fsri
+		makepkg -fsri --noconfirm || exit 1
 		cd ..
 		rm -rf pikaur
 		;;
 	"paru")
 		cd
-		git clone https://aur.archlinux.org/paru.git
+		git clone --depth 1 https://aur.archlinux.org/paru.git
 		cd paru
-		makepkg -si --noconfirm || exit
+		makepkg -si --noconfirm || exit 1
 		cd
 		rm -rf paru
 		;;

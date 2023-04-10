@@ -1,5 +1,9 @@
 #!/bin/sh
 
+die () {
+	echo "$1" >&2
+}
+
 ln -sf /usr/share/zoneinfo/${region} /etc/localtime
 hwclock --systohc
 
@@ -16,16 +20,18 @@ cat > /etc/hosts <<EOF
 127.0.0.1           $hostname.localdomain $hostname
 EOF
 
-pacman --noconfirm -S grub
+die "installing grub"
+pacman --noconfirm -S grub > /dev/null 2>&1
 if [[ "$efi" -eq 0 ]]
 then
 	grub-install --target=i386-pc $dev
 else
 	pacman -S --noconfirm efibootmgr
-	grub-install --target=x86_64-efi --efi-directory=$dev --bootloader-id=GRUB
+	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-pacman -S --noconfirm dhcpcd iwd
+die "install networking packages"
+pacman -S --noconfirm dhcpcd iwd > /dev/null 2>&1
 systemctl enable dhcpcd
 systemctl enable iwd

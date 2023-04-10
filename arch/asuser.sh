@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # installing aur packages
-env aur=pikaur ./scripts/aur.sh
-cat pkglists/aur | 
-	pikaur -S --noconfirm -
+export aurh=pikaur
+./scripts/aur.sh
+cat pkglists/aur1 | ${aurh} -S --noconfirm -
 
 ./scripts/createhome.sh
 
-if ! doas -C /etc/doas.conf
+if ! doas doas -C /etc/doas.conf
 then
 	echo "Please install opendoas first."
 	exit 1
