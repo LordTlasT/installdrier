@@ -2,7 +2,7 @@
 
 pacf="installing\|Total\|downloading"
 dev=/dev/sda
-efi=${1:-0}
+efi=0
 efi_size="+1G"
 swap_size="+4G"
 
@@ -19,32 +19,38 @@ fdisker () {
 }
 
 echo $$ > .preinstall.pid
-die "I: syncing time"
+
+die "I: Entered preinstall.sh"
+die "variables:"
+die "efi = $efi"
+die "dev = $dev"
+
+die "I: Syncing time"
 timedatectl >/dev/null
 
-die "I: unmounting partitions"
+die "I: Unmounting partitions"
 mount |
 	grep "$dev" |
 	tac |
 	xargs umount 2>/dev/null
 swapoff "${dev}2" 2> /dev/null
-die "I: wiping drive"
+die "I: Wiping drive"
 wipefs -af "$dev" > /dev/null
 
-die "I: creating partition table"
+die "I: Creating partition table"
 fdisker "g w"
 
 if [ "$efi" -eq 0 ]
 then
-	die "I: creating bios boot partition"
+	die "I: Creating bios boot partition"
 	fdisker "n   +1M t  4 w"
 else
-	die "I: creating efi partition"
+	die "I: Creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
-die "I: creating swap partition"
+die "I: Creating swap partition"
 fdisker "n   $swap_size t  19 w"
-die "I: creating root partition"
+die "I: Creating root partition"
 fdisker "n    t  20 w"
 
 mkswap "${dev}2" > /dev/null 2>&1
@@ -96,4 +102,6 @@ die "continue?"
 echo -n ">" >&2
 read
 die "I: Installing from chroot."
-arch-chroot /mnt sh -c 'cd /root/arch && ./installer.sh'
+arch-chroot /mnt sh -c "
+cd /root/arch && 
+	export dev=$dev efi=$efi ./installer.sh"
