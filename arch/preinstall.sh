@@ -4,7 +4,7 @@ pacf="installing\|Total\|downloading"
 dev=/dev/sda
 efi=${1:-0}
 efi_size="+1G"
-swap_size="+16G"
+swap_size="+4G"
 
 die ()
 {
@@ -81,7 +81,7 @@ fi
 die "install system?"
 echo -n ">" >&2
 read
-pacstrap -K /mnt base base-devel linux linux-firmware | grep "$pacf" || exit 1
+pacstrap -K /mnt base base-devel linux linux-firmware || exit 1
 genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 
