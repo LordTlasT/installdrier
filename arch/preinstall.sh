@@ -77,7 +77,8 @@ then
 else
 	die "done."
 fi
-echo "install system?\n>"
+die "install system?"
+echo -n ">" >&2
 read
 pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | grep "installing\|Total"
 genfstab -U /mnt >> /mnt/etc/fstab
