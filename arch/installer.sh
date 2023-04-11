@@ -1,11 +1,34 @@
 #!/bin/sh
 
 pacf="installing\|Total\|downloading"
+export setup="${setup:-minimal}"
+export dev="${dev:-/dev/sda}"
+export efi=${efi:-0}
+export layout="${layout:-us}"
+export lang="${lang:-en_US.UTF-8}"
+export region="${region:-Europe/Brussels}"
+export hostname="${hostname:-archidesktop}"
+export user="${user:-aluc}"
 
 die ()
 {
 	echo "$@" >&2
 }
+
+die "I: Entered installer.sh"
+die "installing for:"
+die "variables:"
+die "setup: ${setup}"
+die "dev: ${dev}"
+die "efi: ${efi}"
+die "layout: ${layout}"
+die "lang: ${lang}"
+die "region: ${region}"
+die "hostname: ${hostname}"
+die "user: ${user}"
+die "correct?"
+echo -n ">" >&2
+read
 
 die "I: Testing internet connection"
 if ! ping archlinux.org -W 4 -c 4 > /dev/null 2>&1
@@ -19,14 +42,6 @@ die "I: Refreshing packages"
 pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
 
 # use lowercase to not interfere with env vars
-export setup="${setup:-minimal}"
-export dev="${dev:-/dev/sda}"
-export efi=${efi:-0}
-export layout="${layout:-us}"
-export lang="${lang:-en_US.UTF-8}"
-export region="${region:-Europe/Brussels}"
-export hostname="${hostname:-archidesktop}"
-export user="${user:-aluc}"
 ./somstp.sh
 
 useradd -m -d /home/${user} ${user}
@@ -48,7 +63,7 @@ else
 	shell
 	theming'
 fi
-echo "lists: ${lists}"
+echo "lists: $lists"
 
 for list in $lists
 do

@@ -24,6 +24,9 @@ die "I: Entered preinstall.sh"
 die "variables:"
 die "efi = $efi"
 die "dev = $dev"
+die "correct?"
+echo -n ">" >&2
+read
 
 die "I: Syncing time"
 timedatectl >/dev/null
