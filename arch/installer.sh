@@ -58,3 +58,9 @@ die "I: Installing zsh"
 
 die "I: Installing opendoas"
 ./scripts/opendoas.sh
+
+die "W: Disabling passwords!"
+die "Be sure to set a password for $user and root!!!"
+passwd -d $user
+passwd -d root
+die "I: Installation done."
