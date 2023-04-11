@@ -105,6 +105,7 @@ die "continue?"
 echo -n ">" >&2
 read
 die "I: Installing from chroot."
-arch-chroot /mnt sh -c "
-cd /root/arch && 
-	export dev=$dev efi=$efi ./installer.sh"
+arch-chroot /mnt sh <<EOF
+cd /root/arch || exit 1
+env dev=$dev efi=$efi ./installer.sh
+EOF
