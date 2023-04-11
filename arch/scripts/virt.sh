@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 pacs ()
 {
-	pacman -S --noconfirm $1 2>&1 | grep "installing\|Total"
+	pacman -S --noconfirm $1 2>&1 | grep "installing\|Total\|downloading"
 }
 
 case ${1:-virtualbox} in
 	"virtualbox")
-		pacs "virtualbox virtualbox-guest-iso"
+		pacs "virtualbox virtualbox-guest-iso linux-headers"
 		usermod -aG vboxusers "${user:=aluc}"
 		modprobe vboxdrv vboxnetadp vboxnetflt
 		;;

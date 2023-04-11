@@ -1,10 +1,10 @@
 #!/bin/sh
 
-echo $$ > .preinstall.pid
+pacf="installing\|Total\|downloading"
 dev=/dev/sda
-efi=${1:-0}
+efi=0
 efi_size="+1G"
-swap_size="+16G"
+swap_size="+4G"
 
 die ()
 {
@@ -15,35 +15,45 @@ fdisker () {
 	echo "$1" |
 		tr ' ' '\n' |
 		fdisk -w always -W always "$dev" > /dev/null 2>&1 ||
-		die "failed."
+		die "E: failed."
 }
 
-die "syncing time"
+echo $$ > .preinstall.pid
+
+die "I: Entered preinstall.sh"
+die "variables:"
+die "efi = $efi"
+die "dev = $dev"
+die "correct?"
+echo -n ">" >&2
+read
+
+die "I: Syncing time"
 timedatectl >/dev/null
 
-die "unmounting partitions"
+die "I: Unmounting partitions"
 mount |
 	grep "$dev" |
 	tac |
 	xargs umount 2>/dev/null
 swapoff "${dev}2" 2> /dev/null
-die "wiping drive"
+die "I: Wiping drive"
 wipefs -af "$dev" > /dev/null
 
-die "creating partition table"
+die "I: Creating partition table"
 fdisker "g w"
 
 if [ "$efi" -eq 0 ]
 then
-	die "creating bios boot partition"
+	die "I: Creating bios boot partition"
 	fdisker "n   +1M t  4 w"
 else
-	die "creating efi partition"
+	die "I: Creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
-die "creating swap partition"
+die "I: Creating swap partition"
 fdisker "n   $swap_size t  19 w"
-die "creating root partition"
+die "I: Creating root partition"
 fdisker "n    t  20 w"
 
 mkswap "${dev}2" > /dev/null 2>&1
@@ -59,7 +69,7 @@ then
 	mount --mkdir "${dev}1" /mnt/boot
 fi
 
-die "done. :)"
+die "I: done. :)"
 
 die ""
 die "--------------------------------------------------------"
@@ -69,21 +79,33 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 die ""
 
-if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep installing
+die "I: installing keyring"
+if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
 then
-	die "could not install keyring."
+	die "E: could not install keyring."
 	exit 1
 else
-	die "installed keyring."
+	die "I: done."
 fi
-echo "install system?\n>"
+die "install system?"
+echo -n ">" >&2
 read
-pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | grep "installing|Total"
+pacstrap -K /mnt base base-devel linux linux-firmware || exit 1
 genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 
 die ""
-die "copying installdrier over."
+die "I: Copying installdrier over."
 cd ..
 cp -r arch /mnt/root/
 die "done. :)"
+die ""
+
+die "continue?"
+echo -n ">" >&2
+read
+die "I: Installing from chroot."
+arch-chroot /mnt sh <<EOF
+cd /root/arch || exit 1
+env dev=$dev efi=$efi ./installer.sh
+EOF
