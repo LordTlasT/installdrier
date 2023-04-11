@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # installing aur packages
+doas pacman -Sy --noconfirm
 export aurh=pikaur
 ./scripts/aur.sh
 cat pkglists/aur1 | ${aurh} -S --noconfirm -
