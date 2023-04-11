@@ -6,7 +6,7 @@ pacs ()
 
 case ${1:-virtualbox} in
 	"virtualbox")
-		pacs "virtualbox virtualbox-guest-iso"
+		pacs "virtualbox virtualbox-guest-iso linux-headers"
 		usermod -aG vboxusers "${user:=aluc}"
 		modprobe vboxdrv vboxnetadp vboxnetflt
 		;;
