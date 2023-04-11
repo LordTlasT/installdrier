@@ -69,12 +69,13 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 die ""
 
-if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep installing
+die "installing keyring"
+if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "installing\|Total"
 then
 	die "could not install keyring."
 	exit 1
 else
-	die "installed keyring."
+	die "done."
 fi
 echo "install system?\n>"
 read
