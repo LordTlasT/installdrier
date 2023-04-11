@@ -89,3 +89,9 @@ die "copying installdrier over."
 cd ..
 cp -r arch /mnt/root/
 die "done. :)"
+die ""
+
+die "continue?"
+echo -n ">" >&2
+die "I: Installing from chroot."
+arch-chroot /mnt sh -c 'cd /root/arch && ./installer.sh'
