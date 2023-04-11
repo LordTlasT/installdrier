@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo $$ > .preinstall.pid
+pacf="installing\|Total\|downloading"
 dev=/dev/sda
 efi=${1:-0}
 efi_size="+1G"
@@ -70,7 +70,7 @@ die "--------------------------------------------------------"
 die ""
 
 die "I: installing keyring"
-if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "installing\|Total"
+if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
 then
 	die "E: could not install keyring."
 	exit 1
@@ -80,7 +80,7 @@ fi
 die "install system?"
 echo -n ">" >&2
 read
-pacstrap -K /mnt base base-devel linux linux-firmware || exit 1
+pacstrap -K /mnt base base-devel linux linux-firmware | grep "$pacf" || exit 1
 genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 

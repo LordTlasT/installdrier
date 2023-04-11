@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 pacs ()
 {
-	pacman -S --noconfirm $1 2>&1 | grep "installing\|Total"
+	pacman -S --noconfirm $1 2>&1 | grep "installing\|Total\|downloading"
 }
 
 case ${1:-virtualbox} in

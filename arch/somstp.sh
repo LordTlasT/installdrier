@@ -1,12 +1,14 @@
 #!/bin/sh
 
+pacf="installing\|Total\|downloading"
+
 die ()
 {
 	echo "$1" >&2
 }
 pacs ()
 {
-	pacman -S --noconfirm $1 2>&1 | grep "installing|Total"
+	pacman -S --noconfirm $1 2>&1 | grep "$pacf"
 }
 
 ln -sf /usr/share/zoneinfo/${region} /etc/localtime
@@ -26,7 +28,7 @@ cat > /etc/hosts <<EOF
 EOF
 
 die "I: installing grub"
-pacman --noconfirm -S grub > /dev/null 2>&1
+pacs "grub"
 if [[ "$efi" -eq 0 ]]
 then
 	grub-install --target=i386-pc $dev

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+pacf="installing\|Total\|downloading"
+
 die ()
 {
 	echo "$@" >&2
@@ -14,7 +16,7 @@ fi
 die "I: Connection succesful."
 
 die "I: Refreshing packages"
-pacman -Sy --noconfirm archlinux-keyring >/dev/null 2>&1
+pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
 
 # use lowercase to not interfere with env vars
 export setup="${setup:-minimal}"
