@@ -15,35 +15,35 @@ fdisker () {
 	echo "$1" |
 		tr ' ' '\n' |
 		fdisk -w always -W always "$dev" > /dev/null 2>&1 ||
-		die "failed."
+		die "E: failed."
 }
 
-die "syncing time"
+die "I: syncing time"
 timedatectl >/dev/null
 
-die "unmounting partitions"
+die "I: unmounting partitions"
 mount |
 	grep "$dev" |
 	tac |
 	xargs umount 2>/dev/null
 swapoff "${dev}2" 2> /dev/null
-die "wiping drive"
+die "I: wiping drive"
 wipefs -af "$dev" > /dev/null
 
-die "creating partition table"
+die "I: creating partition table"
 fdisker "g w"
 
 if [ "$efi" -eq 0 ]
 then
-	die "creating bios boot partition"
+	die "I: creating bios boot partition"
 	fdisker "n   +1M t  4 w"
 else
-	die "creating efi partition"
+	die "I: creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
-die "creating swap partition"
+die "I: creating swap partition"
 fdisker "n   $swap_size t  19 w"
-die "creating root partition"
+die "I: creating root partition"
 fdisker "n    t  20 w"
 
 mkswap "${dev}2" > /dev/null 2>&1
@@ -59,7 +59,7 @@ then
 	mount --mkdir "${dev}1" /mnt/boot
 fi
 
-die "done. :)"
+die "I: done. :)"
 
 die ""
 die "--------------------------------------------------------"
@@ -69,13 +69,13 @@ fdisk -l "$dev" | tail -3
 die "--------------------------------------------------------"
 die ""
 
-die "installing keyring"
+die "I: installing keyring"
 if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "installing\|Total"
 then
-	die "could not install keyring."
+	die "E: could not install keyring."
 	exit 1
 else
-	die "done."
+	die "I: done."
 fi
 die "install system?"
 echo -n ">" >&2
@@ -85,7 +85,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 
 die ""
-die "copying installdrier over."
+die "I: Copying installdrier over."
 cd ..
 cp -r arch /mnt/root/
 die "done. :)"
