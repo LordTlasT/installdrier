@@ -1,4 +1,5 @@
 #!/bin/sh
+apt-get update -y
 apt-get install -y libzip-dev libssl-dev libcrypt-dev fcgiwrap
 git clone --depth 1 https://git.zx2c4.com/cgit/ ||
 	exit 1
