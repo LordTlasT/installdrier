@@ -4,7 +4,6 @@ pacf="installing\|Total\|downloading"
 dev=/dev/sda
 efi=0
 efi_size="+1G"
-swap_size="+4G"
 
 die ()
 {
@@ -36,7 +35,6 @@ mount |
 	grep "$dev" |
 	tac |
 	xargs umount 2>/dev/null
-swapoff "${dev}2" 2> /dev/null
 die "I: Wiping drive"
 wipefs -af "$dev" > /dev/null
 
@@ -51,16 +49,11 @@ else
 	die "I: Creating efi partition"
 	fdisker "n   $efi_size t  1 w"
 fi
-die "I: Creating swap partition"
-fdisker "n   $swap_size t  19 w"
 die "I: Creating root partition"
 fdisker "n    t  20 w"
 
-mkswap "${dev}2" > /dev/null 2>&1
-swapon "${dev}2"
-
-mkfs.ext4 "${dev}3" > /dev/null 2>&1
-mount "${dev}3" /mnt
+mkfs.ext4 "${dev}2" > /dev/null 2>&1
+mount "${dev}2" /mnt
 
 # add efi
 if [ "$efi" -eq 1 ]
