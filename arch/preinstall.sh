@@ -80,7 +80,7 @@ fi
 die "install system?"
 echo -n ">" >&2
 read
-pacstrap -K /mnt base base-devel linux linux-firmware 2>&1 | grep "installing\|Total"
+pacstrap -K /mnt base base-devel linux linux-firmware || exit 1
 genfstab -U /mnt >> /mnt/etc/fstab
 rm .preinstall.pid
 
