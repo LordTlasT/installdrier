@@ -16,6 +16,7 @@ die "I: refreshing packages"
 pacman -Sy --noconfirm archlinux-keyring >/dev/null 2>&1
 
 # use lowercase to not interfere with env vars
+export setup="${setup:-minimal}"
 export dev="${dev:-/dev/sda}"
 export efi=${efi:-0}
 export layout="${layout:-us}"
@@ -27,16 +28,23 @@ export user="${user:-aluc}"
 
 useradd -m -d /home/${user} ${user}
 
-lists='
-cli
-audio
-cli
-DE
-gui
-hyprland
-misc
-shell
-theming'
+if [ "$setup" = "minimal" ]
+then
+	lists='
+	cli
+	shell'
+else
+	lists='
+	cli
+	audio
+	DE
+	gui
+	hyprland
+	misc
+	shell
+	theming'
+fi
+
 for list in $lists
 do
 	./pacin.sh $list
