@@ -25,7 +25,7 @@ cat > /etc/hosts <<EOF
 127.0.0.1           $hostname.localdomain $hostname
 EOF
 
-die "installing grub"
+die "I: installing grub"
 pacman --noconfirm -S grub > /dev/null 2>&1
 if [[ "$efi" -eq 0 ]]
 then
@@ -36,7 +36,7 @@ else
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-die "install networking packages"
+die "I: installing networking packages"
 pacs "dhcpcd iwd" 
 systemctl enable dhcpcd
 systemctl enable iwd
