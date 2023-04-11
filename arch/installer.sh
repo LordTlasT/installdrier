@@ -5,14 +5,15 @@ die ()
 	echo "$@" >&2
 }
 
-die "I: testing internet connection"
+die "I: Testing internet connection"
 if ! ping archlinux.org -W 4 -c 4 > /dev/null 2>&1
 then
 	die "E: connection was not succesful!"
 	exit 1
 fi
+die "I: Connection succesful."
 
-die "I: refreshing packages"
+die "I: Refreshing packages"
 pacman -Sy --noconfirm archlinux-keyring >/dev/null 2>&1
 
 # use lowercase to not interfere with env vars
@@ -28,6 +29,7 @@ export user="${user:-aluc}"
 
 useradd -m -d /home/${user} ${user}
 
+die "I: Installing for a $setup setup."
 if [ "$setup" = "minimal" ]
 then
 	lists='
@@ -44,14 +46,15 @@ else
 	shell
 	theming'
 fi
+echo "lists: ${lists}"
 
 for list in $lists
 do
 	./pacin.sh $list
 done
 
-die "I: installing zsh"
+die "I: Installing zsh"
 ./scripts/zsh.sh
 
-die "I: installing opendoas"
+die "I: Installing opendoas"
 ./scripts/opendoas.sh
