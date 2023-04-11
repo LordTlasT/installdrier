@@ -26,9 +26,8 @@ die "lang: ${lang}"
 die "region: ${region}"
 die "hostname: ${hostname}"
 die "user: ${user}"
-die "correct?"
-echo -n ">" >&2
-read
+die "Starting in 5s"
+sleep 5s
 
 die "I: Testing internet connection"
 if ! ping archlinux.org -W 4 -c 4 > /dev/null 2>&1
