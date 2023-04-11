@@ -18,6 +18,7 @@ fdisker () {
 		die "E: failed."
 }
 
+echo $$ > .preinstall.pid
 die "I: syncing time"
 timedatectl >/dev/null
 
@@ -93,5 +94,6 @@ die ""
 
 die "continue?"
 echo -n ">" >&2
+read
 die "I: Installing from chroot."
 arch-chroot /mnt sh -c 'cd /root/arch && ./installer.sh'
