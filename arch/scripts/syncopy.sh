@@ -14,6 +14,7 @@ firp="$(find $HOME/.mozilla/firefox -mindepth 1 -maxdepth 1 |
 echo "firp: ${firp}"
 mkdir "$firp"/chrome
 ln -sf $syncp/userChrome.css "$firp"/chrome/userChrome.css
+ln -sf $syncp/nb_urls $HOME/.config/newsboat/
 
 # copying
 doas mkdir /etc/pacman.d/hooks
