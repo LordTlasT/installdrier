@@ -6,4 +6,5 @@ keychain
 zsh
 zsh-syntax-highlighting
 zsh-autosuggestions
+zsh-completions
 dash
