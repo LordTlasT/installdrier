@@ -69,8 +69,8 @@ do
 	./pacin.sh $list
 done
 
-die "I: Installing zsh"
-./scripts/zsh.sh
+die "I: Installing zsh and dash"
+./scripts/shell.sh
 
 die "I: Installing opendoas"
 ./scripts/opendoas.sh
