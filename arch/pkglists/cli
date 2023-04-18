@@ -15,6 +15,7 @@ wget
 yt-dlp
 git
 jq
+bc
 openssh
 mpv
 feh
