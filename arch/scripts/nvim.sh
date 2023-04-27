@@ -37,6 +37,8 @@ die "emmet"
 npm i -g emmet-ls > /dev/null 2>&1
 die "arduino lsp"
 go install github.com/arduino/arduino-language-server@latest > /dev/null 2>&1
+die "vscode-langservers-extracted"
+npm i -g vscode-langservers-extracted
 
 #install plugins
 nvim -c 'PackerSync'
