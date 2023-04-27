@@ -4,7 +4,7 @@ dpkg -i nvim-linux64.deb
 apt install -f -y
 rm nvim-linux64.deb
 
-ln -sf /usr/bin/nvim /usr/bin/vim
+ln -sf /usr/bin/nvim /usr/local/bin/vim
 
 # Dependencies
 #packer

@@ -7,7 +7,7 @@ die () {
 die "installing neovim"
 doas pacman --noconfirm -S neovim > /dev/null 2>&1
 die "symlinking vim"
-doas ln -sf /usr/bin/nvim /usr/bin/vim
+doas ln -sf /usr/bin/nvim /usr/local/bin/vim
 
 # Dependencies
 #packer
