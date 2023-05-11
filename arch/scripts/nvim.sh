@@ -7,7 +7,7 @@ die () {
 die "installing neovim"
 doas pacman --noconfirm -S neovim > /dev/null 2>&1
 die "symlinking vim"
-doas ln -sf /usr/bin/nvim /usr/local/bin/vim
+doas ln -sf /usr/bin/nvim /usr/local/bin/vi
 
 # Dependencies
 #packer
@@ -39,6 +39,7 @@ die "arduino lsp"
 go install github.com/arduino/arduino-language-server@latest > /dev/null 2>&1
 die "vscode-langservers-extracted"
 npm i -g vscode-langservers-extracted
-
+die "sql"
+npm i -g sql-language-server
 #install plugins
 nvim -c 'PackerSync'
