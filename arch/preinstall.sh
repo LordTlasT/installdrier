@@ -17,6 +17,12 @@ fdisker () {
 		die "E: failed."
 }
 
+if [ "$(id -u)" -ne 0 ]
+then
+	die "Please run as root."
+	exit 1
+fi
+
 echo $$ > .preinstall.pid
 
 die "I: Entered preinstall.sh"
