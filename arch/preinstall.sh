@@ -44,6 +44,13 @@ mount |
 die "I: Wiping drive"
 wipefs -af "$dev" > /dev/null
 
+if echo "$dev" | grep -q "nvme"
+then
+	devp="${dev}p"
+else
+	devp="$dev"
+fi
+
 die "I: Creating partition table"
 fdisker "g w"
 
@@ -58,14 +65,14 @@ fi
 die "I: Creating root partition"
 fdisker "n    t  20 w"
 
-mkfs.ext4 "${dev}2" > /dev/null 2>&1
-mount "${dev}2" /mnt
+mkfs.ext4 "${devp}2" > /dev/null 2>&1
+mount "${devp}2" /mnt
 
 # add efi
 if [ "$efi" -eq 1 ]
 then
-	mkfs.fat -F 32 "${dev}1" > /dev/null 2>&1
-	mount --mkdir "${dev}1" /mnt/boot
+	mkfs.fat -F 32 "${devp}1" > /dev/null 2>&1
+	mount --mkdir "${devp}1" /mnt/boot
 fi
 
 die "I: done. :)"
