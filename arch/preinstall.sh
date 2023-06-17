@@ -2,6 +2,7 @@
 
 pacf="installing\|Total\|downloading"
 dev=/dev/sda
+hostname=winter
 efi=0
 efi_size="+1G"
 
@@ -113,5 +114,5 @@ read
 die "I: Installing from chroot."
 arch-chroot /mnt sh <<EOF
 cd /root/arch || exit 1
-env dev=$dev efi=$efi ./installer.sh
+env hostname=$hostname dev=$dev efi=$efi ./installer.sh
 EOF
