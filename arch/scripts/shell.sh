@@ -1,4 +1,11 @@
 #!/bin/sh
+
+if [ -z "$user" ]
+then
+	die "E: variable 'user' not set."
+	exit 1
+fi
+
 pacman -S --noconfirm \
 	zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions \
 	dash

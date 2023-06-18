@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ -z "$user" ]
+then
+	die "E: variable 'user' not set."
+	exit 1
+fi
+
 usermod -aG wheel $user
 pacman -Sy --noconfirm opendoas
 cat > /etc/doas.conf <<EOF
