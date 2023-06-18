@@ -19,8 +19,7 @@ then
 fi
 die "I: installing $1"
 
-pacf="installing\|Total\|downloading"
-if pacman -Sy --noconfirm - 2>&1 < pkglists/$1 | grep "$pacf"
+if pacman -Sy --noconfirm - < pkglists/$1
 then
 	die "succesful."
 else

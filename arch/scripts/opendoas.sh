@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usermod -aG wheel $user
-pacman -S --noconfirm opendoas 2>&1 | grep "installing|Total"
+pacman -Sy --noconfirm opendoas
 cat > /etc/doas.conf <<EOF
 permit persist :wheel
 permit nopass :wheel cmd reboot 
