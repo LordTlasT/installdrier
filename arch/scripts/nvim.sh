@@ -4,6 +4,12 @@ die () {
 	echo "$1" >&2
 }
 
+if [ -z "$user" ]
+then
+	die "variable 'user' not set."
+	exit 1
+fi
+
 if [ "$(id -u)" -ne 0 ]
 then
 	die "Please run this script as root."
@@ -19,8 +25,8 @@ ln -sf /usr/bin/nvim /usr/local/bin/vi
 #packer
 
 die "installing packer"
-git clone --depth 1 https://github.com/wbthomason/packer.nvim \
- $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+su $user -c "git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+ /home/$user/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 die "installing dependencies with pacman"
 #lua lsp

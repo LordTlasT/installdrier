@@ -1,40 +1,15 @@
 #!/bin/sh
 
-pacf="installing\|Total\|downloading"
-export setup="${setup:-minimal}"
-export dev="${dev:-/dev/sda}"
-export efi=${efi:-0}
-export layout="${layout:-us}"
-export lang="${lang:-en_US.UTF-8}"
-export region="${region:-Europe/Brussels}"
-export hostname="${hostname:-archidesktop}"
-export user="${user:-aluc}"
-
 die ()
 {
 	echo "$@" >&2
 }
 
-die "I: Entered installer.sh"
-die "installing for:"
-die "variables:"
-die "setup: ${setup}"
-die "dev: ${dev}"
-die "efi: ${efi}"
-die "layout: ${layout}"
-die "lang: ${lang}"
-die "region: ${region}"
-die "hostname: ${hostname}"
-die "user: ${user}"
-die "Starting in 5s"
-for n in 4 3 2 1
-do
-	die "$n"
-	sleep 1s
-done
+export setup="${setup:-minimal}"
+export user="${user:-aluc}"
 
 die "I: Testing internet connection"
-if ! ping archlinux.org -W 4 -c 4 > /dev/null 2>&1
+if ! ping archlinux.org -W 4 -c k
 then
 	die "E: connection was not succesful!"
 	exit 1
@@ -42,12 +17,10 @@ fi
 die "I: Connection succesful."
 
 die "I: Refreshing packages"
-pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
+pacman -Sy --noconfirm archlinux-keyring
 
-# use lowercase to not interfere with env vars
-./somstp.sh
-
-useradd -m -d /home/${user} ${user}
+die "I: adding user '$user'"
+useradd -m -d "/home/$user" "$user"
 
 die "I: Installing for a $setup setup."
 if [ "$setup" = "minimal" ]
@@ -79,8 +52,14 @@ die "I: Installing zsh and dash"
 die "I: Installing opendoas"
 ./scripts/opendoas.sh
 
+if [ "$setup" != "minimal" ]
+then
+	die "I: Installing neovim"
+	./scripts/nvim.sh
+fi
+
 die "W: Disabling passwords!"
 die "Be sure to set a password for $user and root!!!"
-passwd -d $user
+passwd -d "$user"
 passwd -d root
 die "I: Installation done."
