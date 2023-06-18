@@ -1,6 +1,5 @@
 #!/bin/sh
 
-pacf="installing\|Total\|downloading"
 dev=/dev/sda
 hostname=winter
 efi=0
@@ -87,7 +86,7 @@ die "--------------------------------------------------------"
 die ""
 
 die "I: installing keyring"
-if ! pacman -Sy --noconfirm archlinux-keyring 2>&1 | grep "$pacf"
+if ! pacman -Sy --noconfirm archlinux-keyring
 then
 	die "E: could not install keyring."
 	exit 1
