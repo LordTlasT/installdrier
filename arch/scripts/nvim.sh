@@ -4,10 +4,16 @@ die () {
 	echo "$1" >&2
 }
 
+if [ "$(id -u)" -ne 0 ]
+then
+	die "Please run this script as root."
+	exit 1
+fi
+
 die "installing neovim"
 pacman --noconfirm -Sy neovim
 die "symlinking vim"
-doas ln -sf /usr/bin/nvim /usr/local/bin/vi
+ln -sf /usr/bin/nvim /usr/local/bin/vi
 
 # Dependencies
 #packer
@@ -18,7 +24,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 
 die "installing dependencies with pacman"
 #lua lsp
-doas pacman --noconfirm -S \
+pacman --noconfirm -S \
 	lua-language-server \
 	jedi-language-server \
 	bash-language-server \
