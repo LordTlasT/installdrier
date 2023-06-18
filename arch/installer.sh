@@ -32,6 +32,7 @@ else
 	lists='
 	cli
 	audio
+	music
 	DE
 	gui
 	hyprland
