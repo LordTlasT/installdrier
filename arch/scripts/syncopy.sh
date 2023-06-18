@@ -9,11 +9,6 @@ patch -p 1 $HOME/.local/share/nvim/site/pack/packer/start/nord.nvim/lua/nord/the
 	< $syncs/nordnvim.diff
 
 # linking
-firp="$(find $HOME/.mozilla/firefox -mindepth 1 -maxdepth 1 |
-	grep 'release$')"
-echo "firp: ${firp}"
-mkdir "$firp"/chrome
-ln -sf $syncp/userChrome.css "$firp"/chrome/userChrome.css
 ln -sf $syncp/nb_urls $HOME/.config/newsboat/
 
 # copying
